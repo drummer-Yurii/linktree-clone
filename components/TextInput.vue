@@ -24,6 +24,10 @@
             v-model="inputComputed"
             autocomplete="off"
         />
+
+        <span v-if="error" class="text-red-500 text-[14px] font-semibold">
+            {{ error }}
+        </span>
     </div>
 </template>
 
@@ -36,6 +40,6 @@
 
     const inputComputed = computed({
         get: () => input.value,
-        set: () => emit('update:input', val)
+        set: (val) => emit('update:input', val)
     })
 </script>
