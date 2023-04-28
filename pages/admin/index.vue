@@ -31,6 +31,17 @@
                             {'max-h-0 transition-all duration-300 ease-out': !showAddLink},
                         ]"
                     />
+
+                    <div v-for="link in fakeLink" :key="link" class="mt-4">
+                        <LinkBox 
+                            v-if="link"
+                            :link="link"
+                            :selectedId="selectedInput.id"
+                            :selectedStr="selectedInput.str"
+                            @updatedInput="updatedInput"
+                            class="mt-6"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,6 +52,27 @@
 import AdminLayout from '~/layouts/AdminLayout.vue';
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
+
+const fakeLink = [
+    {
+        id: 1,
+        name: 'Youtube Channel',
+        url: 'https://www.youtube.com/@johnweeksdev',
+        image: 'https://picsum.photos/id/8/300/320'
+    },
+    {
+        id: 2,
+        name: 'Youtube Channel',
+        url: 'https://www.youtube.com/@johnweeksdev',
+        image: 'https://picsum.photos/id/8/300/320'
+    },
+    {
+        id: 2,
+        name: 'Youtube Channel',
+        url: 'https://www.youtube.com/@johnweeksdev',
+        image: 'https://picsum.photos/id/8/300/320'
+    },
+]
 
 let selectedInput = ref({ id: 0, str: ''})
 let showAddLink = ref(false)
