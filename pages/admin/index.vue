@@ -22,6 +22,15 @@
                         <span v-if="!userStore.isMobile">Add link</span>
                         <span v-if="userStore.isMobile">Add new link</span>
                     </button>
+
+                    <AddLink 
+                        v-if="!userStore.isMobile"
+                        @close="showAddLink = false"
+                        :class="[
+                            {'mt-20 md:mt-8 mb-12 max-h-[1000px] transition-all duration-300 ease-in': showAddLink},
+                            {'max-h-0 transition-all duration-300 ease-out': !showAddLink},
+                        ]"
+                    />
                 </div>
             </div>
         </div>
@@ -32,4 +41,20 @@
 import AdminLayout from '~/layouts/AdminLayout.vue';
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
+
+let selectedInput = ref({ id: 0, str: ''})
+let showAddLink = ref(false)
+
+const updatedInput = (e) => {
+    selectedInput.value.id = e.id
+    selectedInput.value.str = e.str
+}
+
+const showAddLinkFunc = () => {
+    if (userStore.isMobile) {
+        userStore.addLinkOverlay = true
+    } else {
+        showAddLink.value = true
+    }
+}
 </script>
