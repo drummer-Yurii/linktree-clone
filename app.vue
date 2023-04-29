@@ -3,6 +3,8 @@
   <div v-if="bgIsGray" class="bg-[#F3F3F1] fixed w-full h-full z-[-1]" />
   <NuxtPage />
 
+  <!-- <UpdateLinkOverlay v-if="isMobile && updatedLinkId" /> -->
+  <UpdateLinkOverlay />
   <AddLinkOverlay v-if="isMobile && addLinkOverlay" />
   <PreviewOverlay v-if="!isMobile && isPreviewOverlay" />
 </template>
