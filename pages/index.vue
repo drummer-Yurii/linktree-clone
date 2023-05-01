@@ -63,6 +63,8 @@ const userStore = useUserStore()
 
 const router = useRouter()
 
+definePageMeta({ middleware: 'is-logged-in' })
+
 let email = ref(null)
 let password = ref(null)
 let errors = ref(null)

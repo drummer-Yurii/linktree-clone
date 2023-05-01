@@ -56,6 +56,8 @@ import AdminLayout from '~/layouts/AdminLayout.vue';
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
 
+definePageMeta({ middleware: 'is-logged-out' })
+
 const fakeLink = [
     {
         id: 1,
