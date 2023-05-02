@@ -1,5 +1,6 @@
 <template>
     <div
+        v-if="userStore.theme"
         class="md:block fixed hidden right-0 lg:w-[500px] w-[310px] h-[calc(100%-20px)] mt-[20px] mx-auto border-l border-l-gray-300 pt-20"
     >
         <div
@@ -27,32 +28,32 @@
 
             <div 
                 class="w-full h-full absolute lg:max-w-[220px] max-w-[195px] rounded-3xl z-0"
-                :class="userStore.theme"
+                :class="userStore.theme.color"
             />
 
             <div class="h-full mx-auto w-full overflow-auto z-10">
                 <img 
                     class="rounded-full min-w-[60px] w-[60px] mx-auto mt-8"
-                    src="https://picsum.photos/id/8/300/320"
+                    :src="userStore.image"
                 >
 
                 <div
                     class="text-center text-sm font-semibold mt-4 break-words"
-                    :class="userStore.theme"
+                    :class="userStore.theme.text"
                 >
-                    @uriidrumdev
+                    @{{ userStore.allLowerCaseNoCaps(userStore.name) }}
                 </div>
 
                 <div
                     class="text-center text-[8px] font-semibold mt-2"
-                    :class="userStore.theme"
+                    :class="userStore.theme.text"
                 >
                     <div class="px-8 break-words">
-                        This is the bio section!!!
+                        {{ userStore.bio }}
                     </div>
                 </div>
 
-                <div v-for="link in fakeLink" :key="link">
+                <div v-for="link in userStore.allLinks" :key="link">
                     <a
                         :href="link.url"
                         target="_blank"
@@ -92,25 +93,4 @@
 <script setup>
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
-
-const fakeLink = [
-    {
-        id: 1,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-]
 </script>
