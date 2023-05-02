@@ -2,7 +2,7 @@
     <div
         id="PreviewOverlay"
         class="md:hidden fixed bg-white z-30 top-0 left-0 h-full w-full overflow-auto"
-        :class="userStore.theme"
+        :class="userStore.theme.color"
     >
         <div
             id="PreviewOverlayTopNav"
@@ -44,26 +44,26 @@
                 <div class="h-full mx-auto w-full overflow-auto z-10">
                     <img 
                         class="rounded-full min-w-[100px] w-[100px] mx-auto"
-                        src="https://picsum.photos/id/8/300/320"
+                        :src="userStore.image"
                     />
 
                     <div
                         class="text-center text-xl font-semibold mt-4"
-                        :class="userStore.theme"
+                        :class="userStore.theme.text"
                     >
-                        @uriidrumdev
+                        @{{ userStore.allLowerCaseNoCaps(userStore.name) }}
                     </div>
 
                     <div
                         class="text-center font-light mt-2"
-                        :class="userStore.theme"
+                        :class="userStore.theme.text"
                     >
                         <div class="px-8">
-                            This is the bio section!!!
+                            {{ userStore.bio }}
                         </div>
                     </div>
 
-                    <div v-for="link in fakeLink" :key="link">
+                    <div v-for="link in userStore.allLinks" :key="link">
                         <a
                             :href="link.url"
                             target="_blank"
@@ -112,27 +112,6 @@
 <script setup>
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
-
-const fakeLink = [
-    {
-        id: 1,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-]
 
 onUnmounted(() => userStore.isPreviewOverlay = false)
 </script>
