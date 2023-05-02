@@ -16,7 +16,7 @@
 
                     <div v-for="link in links" :key="link" class="lg:px-2.5 px-0.5 md:block hidden">
                         <NuxtLink
-                            to="link.url"
+                            :to="link.url"
                             class="flex items-center text-sm font-semibold px-1.5 py-3 rounded-lg hover:bg-gray-100"
                         >
                             <Icon 
