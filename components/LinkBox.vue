@@ -271,7 +271,13 @@ onMounted(() => {
 })
 
 const updateLink = useDebounce(async () => {
-    //
+    try {
+        await userStore.updateLink(link.value.id, name.value, url.value)
+        await userStore.getAllLinks()
+    } catch (error) {
+        console.log(error);
+        errors.value = error.response.data.errors
+    }
 }, 500)
 
 const changeInput = (str, linkIdNameString) => {
@@ -313,11 +319,25 @@ const editImage = () => {
 }
 
 const updateLinkImage = async () => {
-    //
+    try {
+        await userStore.updateLinkImage(data.value)
+        await userStore.getAllLinks()
+        setTimeout(() => openCropper.value = false, 300)
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const deleteLink = async () => {
     let res = confirm('Are you sure you want to delete this link?')
+    try {
+        if (res) {
+            await userStore.deleteLink(link.value.id)
+            await userStore.getAllLinks()
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 watch(() => name.value, () => {
