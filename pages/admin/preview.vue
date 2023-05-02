@@ -1,7 +1,7 @@
 <template>
     <div 
         class="fixed overflow-auto w-full h-screen"
-        :class="userStore.theme"
+        :class="userStore.theme.color"
     />
 
     <AdminLayout>
@@ -13,26 +13,26 @@
                 <div class="h-full mx-auto w-full">
                     <img 
                         class="rounded-full min-w-[120px] w-[120px] mx-auto"
-                        src="https://picsum.photos/id/8/300/320"
+                        :src="userStore.image"
                     >
 
                     <div
                         class="text-center text-2xl font-semibold mt-2"
-                        :class="userStore.theme"
+                        :class="userStore.theme.text"
                     >
-                        @uriidrumdev
+                        @{{ userStore.allLowerCaseNoCaps(userStore.name) }}
                     </div>
 
                     <div
                         class="text-center text-lg font-light mt-2 mb-10"
-                        :class="userStore.theme"
+                        :class="userStore.theme.text"
                     >
                         <div class="px-8">
-                            This is the bio section!!!
+                            {{ userStore.bio }}
                         </div>
                     </div>
 
-                    <div v-for="link in fakeLink" :key="link">
+                    <div v-for="link in userStore.allLinks" :key="link">
                         <a
                             :href="link.url"
                             target="_blank"
@@ -73,25 +73,4 @@ import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
 
 definePageMeta({ middleware: 'is-logged-out' })
-
-const fakeLink = [
-    {
-        id: 1,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-]
 </script>

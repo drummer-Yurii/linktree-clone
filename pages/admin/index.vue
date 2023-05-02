@@ -32,7 +32,7 @@
                         ]"
                     />
 
-                    <div v-for="link in fakeLink" :key="link" class="mt-4">
+                    <div v-for="link in userStore.allLinks" :key="link" class="mt-4">
                         <LinkBox 
                             v-if="link"
                             :link="link"
@@ -57,27 +57,6 @@ import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
 
 definePageMeta({ middleware: 'is-logged-out' })
-
-const fakeLink = [
-    {
-        id: 1,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-    {
-        id: 2,
-        name: 'Youtube Channel',
-        url: 'https://www.youtube.com/@johnweeksdev',
-        image: 'https://picsum.photos/id/8/300/320'
-    },
-]
 
 let selectedInput = ref({ id: 0, str: ''})
 let showAddLink = ref(false)
