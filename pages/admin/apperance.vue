@@ -19,7 +19,7 @@
                             <div class="flex items-center justify-between gap-4">
                                 <img 
                                     class="rounded-full w-[90px]"
-                                    src="https://picsum.photos/id/8/300/320"
+                                    :src="userStore.image"
                                 />
 
                                 <div class="w-full">

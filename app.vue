@@ -1,7 +1,7 @@
 <template>
   <VitePwaManifest />
   <div v-if="bgIsGray" class="bg-[#F3F3F1] fixed w-full h-full z-[-1]" />
-  <NuxtPage />
+  <NuxtPage v-if="show" />
 
   <UpdateLinkOverlay v-if="isMobile && updatedLinkId" />
   <AddLinkOverlay v-if="isMobile && addLinkOverlay" />
@@ -40,6 +40,8 @@ onMounted(async () => {
   if ('ontouchstart' in window) {
     isMobile.value = true
   }
+
+  setTimeout(() => show.value = true, 1)
 })
 
 const colors = () => {
